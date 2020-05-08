@@ -4,9 +4,9 @@
 
 ### 项目组块与分工
 
-* **组块一：理解文献**（全员）
+* **组块一：[理解文献](https://github.com/MYF2000/matlab-final-homework/issues/4)**（全员）
   * 【待展开】
-* **组块二：设计程序**
+* **组块二：[设计程序](https://github.com/MYF2000/matlab-final-homework/issues/5)**
   * 代码编写（MYF）
   * 审阅与运行代码（GYL HY）
 * **组块三：收集数据**（全员）
