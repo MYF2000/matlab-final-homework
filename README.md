@@ -5,7 +5,7 @@
 
 ## 闭环设定
 
-完成五个子组块的内容。见[项目看板](https://github.com/MYF2000/matlab-final-homework/projects)。
+完成五个子组块的内容。见[项目看板](https://github.com/MYF2000/matlab-final-homework/projects/2)。
 
 ## 协作方法
 
