@@ -104,11 +104,12 @@ for i = 1:trials_num
         data{i, 7} = 'NA';
     end
 end
-
-nan_mat = nan(1, 5);
-id = [{'subject_id', subject_id} num2cell(nan_mat)];
-title = {'trial_num', 'response', 'RT', 'score', 'is_reward',...
+% Generate headers and subject_id column
+nan_mat = num2cell(nan(1, 6));
+id = num2cell(repmat(subject_id, trials_num, 1));
+title = {'subject_id', 'trial_num', 'response', 'RT', 'score', 'is_reward',...
     'is_repeated_after_reward', 'is_repeated_after_punishment'};
+data = [id data];
 % Display: data manipulation completed
 disp('Experiment data output completed')
 
@@ -138,9 +139,9 @@ answer = inputdlg(prompt,dlgtitle,dims,definput);
 evaluation_safe = answer{1};
 evaluation_threat = answer{2};
 % Output data as xlsx file
-ev_safe = [{'evaluation_safe', evaluation_safe} num2cell(nan_mat)];
-ev_threat = [{'evaluation_threat', evaluation_threat} num2cell(nan_mat)];
-data_output = [id; ev_safe; ev_threat; title; data];
+ev_safe = [{'evaluation_safe', evaluation_safe} nan_mat];
+ev_threat = [{'evaluation_threat', evaluation_threat} nan_mat];
+data_output = [ev_safe; ev_threat; title; data];
 
 % Write evaluation point into output file
 disp('=========================================================')
