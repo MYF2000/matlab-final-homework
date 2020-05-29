@@ -1,31 +1,21 @@
-# Matlab 期末作业
+# 2020 Matlab 期末作业
 
-## 闭环设定
+选择一篇文献，模仿或修改研究，自行制作出 Matlab Psychtoolbox 心理学实验程序，收集一批被试数据并进行统计分析，最后呈交一份报告。
 
-### 项目组块与分工
+* 所选文献：Aylward, J., Valton, V., Ahn, W. Y., Bond, R. L., Dayan, P., Roiser, J. P., & Robinson, O. J. (2019). Altered learning under uncertainty in unmedicated mood and anxiety disorders. *Nature human behaviour*, 3(10), 1116-1123.
+* 成员：GYL HY MYF。
 
-* **组块一：[理解文献](https://github.com/MYF2000/matlab-final-homework/issues/4)**（全员）
-  * 【待展开】
-* **组块二：[设计程序](https://github.com/MYF2000/matlab-final-homework/issues/5)**
-  * 代码编写（MYF）
-  * 审阅与运行代码（GYL HY）
-* **组块三：收集数据**（全员）
-  * 【待展开】
-* **组块四：统计分析**
-  * 整理数据【待定 视具体情况灵活解决】
-  * 统计分析（GYL）
-  * 输出统计结果（GYL）
-  * 审阅分析过程及结果（HY MYF）
-* **组块五：撰写报告**
-  * 撰写报告（HY）
-  * 审阅报告（GYL MYF）
+## 闭环设定&协作方式&协作过程
 
-[闭环进度看板（待设定））](on_hold)
+见[项目看板](https://github.com/MYF2000/matlab-final-homework/projects/2)。
 
-### 完成方式
+## 文件目录说明
 
-待设定。
+* reference-paper：存放用于参考的原始研究文献及开源数据及计算模型代码（然而这次受时间精力与能力限制，并未还原强化学习计算模拟研究）。
+* task：存放心理学实验程序的代码及素材。
+* analyses：存放被试数据（包括问卷数据和行为实验数据），以及统计分析代码和统计分析结果。
 
 ## ChangeLog
 
+* 200529 1830 MYF 在 PTB 实验程序编写完成之际，编写说明文档正式版 v1.0 。
 * 200508 2230 MYF 尝试性地发布很不完整的说明文档。
