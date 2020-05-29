@@ -202,6 +202,7 @@ end
 
 %% Present the score text for 0.75 second
 
+Screen('Flip', window);
 Screen('TextSize', window, 70);
 DrawFormattedText(window, score_text, text_x_position,...
     'center', white);
