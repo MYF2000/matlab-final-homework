@@ -200,12 +200,13 @@ end
 % % For quick stress test
 % WaitSecs(0.1);
 
-%% Present the score text
+%% Present the score text for 0.75 second
 
 Screen('TextSize', window, 70);
 DrawFormattedText(window, score_text, text_x_position,...
     'center', white);
 Screen('Flip', window);
+WaitSecs(0.75);
 
 %% If not in practice mode, record the data 
 % and renew the total point (not in practice)
