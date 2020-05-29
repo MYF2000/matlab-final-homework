@@ -31,7 +31,7 @@ while exit_practice == false
     temp_prob_reward_right_seq = generate_walk(start_prob, num_practice_trial, mu, sigma);
 
     % ---------------------------------------------------------
-    % Generate the safe scene
+    % Generate the temp condition sequence
     % ---------------------------------------------------------
     
     condition_seq = [1:num_practice_trial;...
