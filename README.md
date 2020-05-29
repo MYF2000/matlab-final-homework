@@ -1,16 +1,21 @@
 # 2020 Matlab 期末作业
 
+选择一篇文献，模仿或修改研究，自行制作出 Matlab Psychtoolbox 心理学实验程序，收集一批被试数据并进行统计分析，最后呈交一份报告。
+
 * 所选文献：Aylward, J., Valton, V., Ahn, W. Y., Bond, R. L., Dayan, P., Roiser, J. P., & Robinson, O. J. (2019). Altered learning under uncertainty in unmedicated mood and anxiety disorders. *Nature human behaviour*, 3(10), 1116-1123.
 * 成员：GYL HY MYF。
 
-## 闭环设定
+## 闭环设定&协作方式&协作过程
 
-完成五个子组块的内容。见[项目看板](https://github.com/MYF2000/matlab-final-homework/projects/2)。
+见[项目看板](https://github.com/MYF2000/matlab-final-homework/projects/2)。
 
-## 协作方法
+## 文件目录说明
 
-on hold
+* reference-paper：存放用于参考的原始研究文献及开源数据及计算模型代码（然而这次受时间精力与能力限制，并未还原强化学习计算模拟研究）。
+* task：存放心理学实验程序的代码及素材。
+* analyses：存放被试数据（包括问卷数据和行为实验数据），以及统计分析代码和统计分析结果。
 
 ## ChangeLog
 
+* 200529 1830 MYF 在 PTB 实验程序编写完成之际，编写说明文档正式版 v1.0 。
 * 200508 2230 MYF 尝试性地发布很不完整的说明文档。
