@@ -202,15 +202,9 @@ end
 
 %% Present the score text
 
-if strcmp(num2str(is_reward), '1')
-    Screen('TextSize', window, 70);
-    DrawFormattedText(window, score_text, text_x_position,...
-        'center', white);
-elseif strcmp(num2str(is_reward), '1')
-    
-elseif strcmp(num2str(is_reward), 'NA')
-    
-end
+Screen('TextSize', window, 70);
+DrawFormattedText(window, score_text, text_x_position,...
+    'center', white);
 Screen('Flip', window);
 
 %% If not in practice mode, record the data 
