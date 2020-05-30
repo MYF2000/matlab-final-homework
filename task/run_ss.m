@@ -33,7 +33,7 @@ subject_id = subject_id{1};
 % PTB setup
 % ---------------------------------------------------------
 
-Screen('Preference', 'SkipSyncTests', 1)
+Screen('Preference', 'SkipSyncTests', 1);
 
 %% ---------------------------------------------------------
 % Make PTB screen settings
