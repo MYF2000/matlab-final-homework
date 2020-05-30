@@ -71,6 +71,9 @@ formal_experiment;
 % Prevent mysterious crash due to press the key too instantly
 WaitSecs(0.3);
 
+% % !!!!!!!!!!!!!!!!!!!!!!!
+% sca;
+
 %% ========================================================
 % 4. Data outputing API
 % =========================================================
@@ -106,10 +109,13 @@ for i = 1:trials_num
 end
 % Generate headers and subject_id column
 nan_mat = num2cell(nan(1, 6));
-id = num2cell(repmat(subject_id, trials_num, 1));
-title = {'subject_id', 'trial_num', 'response', 'RT', 'score', 'is_reward',...
+id = repmat({subject_id}, trials_num, 1);
+headers = {'subject_id', 'trial_num', 'response', 'RT', 'score', 'is_reward',...
     'is_repeated_after_reward', 'is_repeated_after_punishment'};
 data = [id data];
+% Generate final output matrix and form a xls file
+data_output = [headers; data];
+writecell(data_output, ['subject_' num2str(subject_id) '_data.xls']);
 % Display: data manipulation completed
 disp('Experiment data output completed')
 
@@ -134,20 +140,18 @@ prompt = {'Enter your anxiety level under the SAFE condition (0 - not at all; 10
     'Enter your anxiety level under the THREAT condition (0 - not at all; 10 - very much so)'};
 dims = [1 100];
 dlgtitle = 'Type your evaluation:';
-definput = {'NA','NA'};
-answer = inputdlg(prompt,dlgtitle,dims,definput);
+definput = {'NA', 'NA'};
+answer = inputdlg(prompt, dlgtitle, dims, definput);
 evaluation_safe = answer{1};
 evaluation_threat = answer{2};
-% Output data as xlsx file
-ev_safe = [{'evaluation_safe', evaluation_safe} nan_mat];
-ev_threat = [{'evaluation_threat', evaluation_threat} nan_mat];
-data_output = [ev_safe; ev_threat; title; data];
-
-% Write evaluation point into output file
+ev_safe = {'evaluation_safe', evaluation_safe};
+ev_threat = {'evaluation_threat', evaluation_threat};
+ev_output = [{'subject_id'} subject_id ev_safe ev_threat];
+% Write evaluation point into another output file
 disp('=========================================================')
 disp('*** [Please wait, system is outputing data...] ***')
 disp('=========================================================')
-writecell(data_output, ['subject_' num2str(subject_id) '_data.xls']);
+writecell(ev_output, ['subject_' subject_id '_ev.xls']);
 disp('=========================================================')
 disp('*** [Output 100% completed.] ***')
 disp('=========================================================')
