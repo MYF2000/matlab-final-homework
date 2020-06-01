@@ -19,10 +19,14 @@
 
 打开 Matlab ，将路径切到 task 文件夹，然后输入 `run` 即可。若出现刷新率同步错误，则输入 `run_ss` 其次是 `run_cVRAM` 尝试运行。
 
-注意：此实验程序的编写环境是 Matlab R2019a 以及 Psychtoolbox-3 ，操作系统是 MacOSX 10.15 。
+注意：
+
+* 此实验程序的编写环境是 Matlab R2019a 以及 Psychtoolbox-3 ，操作系统是 MacOSX 10.15 。
+* 收集数据的过程中发现少数人运行不了 Matlab 内置函数 [writecell](https://ww2.mathworks.cn/help/matlab/ref/writecell.html) ，仔细查看官方文档后发现，此函数在版本 2019a 中才建立。由于数据收集工作已完成，不再编写可向下兼容的实验程序。
 
 ## ChangeLog
 
+* 200601 2135 MYF 增加关于 Matlab 内置函数 writecell 的提醒。
 * 200530 2240 MYF 修复一些不足，更新常见报错情形的应对方式。 v1.1 。
 * 200529 1830 MYF 在 PTB 实验程序编写完成之际，编写说明文档正式版 v1.0 。
 * 200508 2230 MYF 尝试性地发布很不完整的说明文档。
