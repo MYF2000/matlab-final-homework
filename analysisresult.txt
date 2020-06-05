@@ -1,0 +1,209 @@
+1.winstay analysis
+====== MANOVA Output (Mixed Design) ======
+
+Descriptive Statistics:
+©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
+ group con Mean S.D. N
+©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
+     1   s 0.60 0.11 9
+     1   t 0.68 0.09 9
+     2   s 0.63 0.12 9
+     2   t 0.63 0.12 9
+©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
+Total sample size: N = 18
+
+ANOVA Table:
+Dependent variable(s):      consafe, conthreat
+Between-subjects factor(s): group
+Within-subjects factor(s):  con
+Covariate(s):               -
+©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
+              MS   MSE df1 df2    F     p      ¦Ç2p   [90%     CI]
+©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
+group      0.001 0.021   1  16 0.03  .860     0.002 [0.000, 0.104]
+con        0.015 0.002   1  16 6.95  .018 *   0.303 [0.032, 0.520]
+group:con  0.017 0.002   1  16 7.89  .013 *   0.330 [0.046, 0.541]
+©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
+MSE = Mean Square Error (an estimate of the population variance ¦Ò2)
+
+ANOVA Effect Size:
+               ¦Ø2      ¦Ç2   ¦Ç2[G]   ¦Ç2[p] Cohen's f
+group      -0.004   0.002   0.002   0.002     0.045
+con         0.031   0.037   0.039   0.303     0.659
+group:con   0.036   0.042   0.044   0.330     0.702
+
+¦Ø2 = omega-squared = (SS - df1 * MSE) / (SST + MSE)
+¦Ç2 = eta-squared = SS / SST
+¦Ç2G = generalized eta-squared (see Olejnik & Algina, 2003)
+¦Ç2p = partial eta-squared = SS / (SS + SSE) = F * df1 / (F * df1 + df2)
+Cohen¡¯s f = sqrt( ¦Ç2p / (1 - ¦Ç2p) )
+
+Levene¡¯s Test for Homogeneity of Variance:
+DV = consafe:
+                Levene's F df1 df2     p sig
+Based on Mean         0.08   1  16  .781    
+Based on Median       0.01   1  16  .938    
+
+DV = conthreat:
+                Levene's F df1 df2     p sig
+Based on Mean         1.23   1  16  .285    
+Based on Median       0.24   1  16  .632    
+
+
+2.loseshift analysis
+====== MANOVA Output (Mixed Design) ======
+
+Descriptive Statistics:
+©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
+ group con Mean S.D. N
+©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
+     1   s 0.67 0.18 9
+     1   t 0.68 0.15 9
+     2   s 0.66 0.19 9
+     2   t 0.70 0.18 9
+©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
+Total sample size: N = 18
+
+ANOVA Table:
+Dependent variable(s):      consafe, conthreat
+Between-subjects factor(s): group
+Within-subjects factor(s):  con
+Covariate(s):               -
+©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
+              MS   MSE df1 df2    F     p      ¦Ç2p   [90%     CI]
+©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
+group      0.000 0.052   1  16 0.00  .957     0.000 [0.000, 1.000]
+con        0.005 0.011   1  16 0.51  .485     0.031 [0.000, 0.235]
+group:con  0.004 0.011   1  16 0.35  .563     0.021 [0.000, 0.213]
+©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
+MSE = Mean Square Error (an estimate of the population variance ¦Ò2)
+
+ANOVA Effect Size:
+               ¦Ø2      ¦Ç2   ¦Ç2[G]   ¦Ç2[p] Cohen's f
+group      -0.010   0.000   0.000   0.000     0.000
+con        -0.005   0.005   0.005   0.031     0.179
+group:con  -0.007   0.004   0.004   0.021     0.146
+
+¦Ø2 = omega-squared = (SS - df1 * MSE) / (SST + MSE)
+¦Ç2 = eta-squared = SS / SST
+¦Ç2G = generalized eta-squared (see Olejnik & Algina, 2003)
+¦Ç2p = partial eta-squared = SS / (SS + SSE) = F * df1 / (F * df1 + df2)
+Cohen¡¯s f = sqrt( ¦Ç2p / (1 - ¦Ç2p) )
+
+Levene¡¯s Test for Homogeneity of Variance:
+DV = consafe:
+                Levene's F df1 df2     p sig
+Based on Mean         0.02   1  16  .899    
+Based on Median       0.01   1  16  .908    
+
+DV = conthreat:
+                Levene's F df1 df2     p sig
+Based on Mean         0.03   1  16  .857    
+Based on Median       0.05   1  16  .833    
+
+3.RT analysis
+
+====== MANOVA Output (Mixed Design) ======
+
+Descriptive Statistics:
+©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
+ group con   Mean   S.D. N
+©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
+     1   s 556.77 197.40 9
+     1   t 531.23 177.52 9
+     2   s 405.83 192.38 9
+     2   t 481.52 265.60 9
+©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
+Total sample size: N = 18
+
+ANOVA Table:
+Dependent variable(s):      consafe, conthreat
+Between-subjects factor(s): group
+Within-subjects factor(s):  con
+Covariate(s):               -
+©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
+                  MS       MSE df1 df2    F     p      ¦Ç2p   [90%     CI]
+©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
+group      90584.697 84792.615   1  16 1.07  .317     0.063 [0.000, 0.286]
+con         5655.353  4224.257   1  16 1.34  .264     0.077 [0.000, 0.306]
+group:con  23056.524  4224.257   1  16 5.46  .033 *   0.254 [0.012, 0.481]
+©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
+MSE = Mean Square Error (an estimate of the population variance ¦Ò2)
+
+ANOVA Effect Size:
+               ¦Ø2      ¦Ç2   ¦Ç2[G]   ¦Ç2[p] Cohen's f
+group       0.056   0.059   0.060   0.063     0.259
+con         0.001   0.004   0.004   0.077     0.289
+group:con   0.012   0.015   0.016   0.254     0.584
+
+¦Ø2 = omega-squared = (SS - df1 * MSE) / (SST + MSE)
+¦Ç2 = eta-squared = SS / SST
+¦Ç2G = generalized eta-squared (see Olejnik & Algina, 2003)
+¦Ç2p = partial eta-squared = SS / (SS + SSE) = F * df1 / (F * df1 + df2)
+Cohen¡¯s f = sqrt( ¦Ç2p / (1 - ¦Ç2p) )
+
+Levene¡¯s Test for Homogeneity of Variance:
+DV = consafe:
+                Levene's F df1 df2     p sig
+Based on Mean         0.05   1  16  .831    
+Based on Median       0.02   1  16  .903    
+
+DV = conthreat:
+                Levene's F df1 df2     p sig
+Based on Mean         2.40   1  16  .141    
+Based on Median       0.97   1  16  .338    
+
+4. evaluation analysis
+
+====== MANOVA Output (Mixed Design) ======
+
+Descriptive Statistics:
+©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
+ group B Mean S.D. N
+©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
+     1 s 3.33 2.18 9
+     1 t 7.00 1.87 9
+     2 s 1.89 1.05 9
+     2 t 8.11 0.78 9
+©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
+Total sample size: N = 18
+
+ANOVA Table:
+Dependent variable(s):      consafe, conthreat
+Between-subjects factor(s): group
+Within-subjects factor(s):  B
+Covariate(s):               -
+©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
+              MS   MSE df1 df2      F     p      ¦Ç2p   [90%     CI]
+©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
+group      0.250 3.000   1  16   0.08  .777     0.005 [0.000, 0.146]
+B        220.028 1.986   1  16 110.78 <.001 *** 0.874 [0.731, 0.915]
+group:B   14.694 1.986   1  16   7.40  .015 *   0.316 [0.039, 0.530]
+©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
+MSE = Mean Square Error (an estimate of the population variance ¦Ò2)
+
+ANOVA Effect Size:
+             ¦Ø2      ¦Ç2   ¦Ç2[G]   ¦Ç2[p] Cohen's f
+group    -0.005   0.001   0.003   0.005     0.071
+B         0.688   0.699   0.734   0.874     2.634
+group:B   0.040   0.047   0.156   0.316     0.680
+
+¦Ø2 = omega-squared = (SS - df1 * MSE) / (SST + MSE)
+¦Ç2 = eta-squared = SS / SST
+¦Ç2G = generalized eta-squared (see Olejnik & Algina, 2003)
+¦Ç2p = partial eta-squared = SS / (SS + SSE) = F * df1 / (F * df1 + df2)
+Cohen¡¯s f = sqrt( ¦Ç2p / (1 - ¦Ç2p) )
+
+Levene¡¯s Test for Homogeneity of Variance:
+DV = consafe:
+                Levene's F df1 df2     p sig
+Based on Mean         3.85   1  16  .067 .  
+Based on Median       3.24   1  16  .091 .  
+
+DV = conthreat:
+                Levene's F df1 df2     p sig
+Based on Mean         8.40   1  16  .010 *  
+Based on Median       8.53   1  16  .010 *  
+
+
+
