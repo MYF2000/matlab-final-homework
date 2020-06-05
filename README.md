@@ -22,7 +22,7 @@
 注意：
 
 * 此实验程序的编写环境是 Matlab R2019a 以及 Psychtoolbox-3 ，操作系统是 MacOSX 10.15 。
-* 收集数据的过程中发现少数人运行不了 Matlab 内置函数 [writecell](https://ww2.mathworks.cn/help/matlab/ref/writecell.html) ，仔细查看官方文档后发现，此函数在版本 2019a 中才建立。由于数据收集工作已完成，不再编写可向下兼容的实验程序。
+* 收集数据的过程中发现少数人运行不了 Matlab 内置函数 [writecell](https://ww2.mathworks.cn/help/matlab/ref/writecell.html) ，仔细查看官方文档后发现，此函数在版本 2019a 中才建立。由于数据收集工作已完成，不再编写可向下兼容的实验程序。只需把 run.m（或 run_ss.m 或 run_cVRAM.m）中含有 writecell 函数的两行代码（建议使用 Ctrl+F / CMD+F 来高效检索及跳转）注释掉，程序即可正常运行，然后对于已经生成的变量数据，可以用官方不推荐的旧方式导出。
 
 ## ChangeLog
 
