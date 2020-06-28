@@ -1,0 +1,295 @@
+---
+title: "result_report"
+author: "GYL"
+date: "`r format(Sys.time())`"
+output:
+  html_document:
+    toc: yes
+  pdf_document:
+    toc: yes
+  word_document:
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 3.结果
+
+```{r,echo=FALSE,message=FALSE}
+# 载入需要的包
+
+library(ggplot2);
+library(ggthemr);
+library(stats);
+library(base);
+library(plyr);
+library(dplyr);
+library(ggpubr);
+rm(list=ls());
+
+setwd('C:/Users/DAWN/Desktop/matlab_finalhomework_analysis')
+
+```
+
+
+```{r, echo=FALSE,message=FALSE,results='hide'}
+## 定义geom_split_violin函数
+GeomSplitViolin <- ggproto("GeomSplitViolin", GeomViolin, 
+                           draw_group = function(self, data, ..., draw_quantiles = NULL) {
+  data <- transform(data, xminv = x - violinwidth * (x - xmin), xmaxv = x + violinwidth * (xmax - x))
+  grp <- data[1, "group"]
+  newdata <- plyr::arrange(transform(data, x = if (grp %% 2 == 1) xminv else xmaxv), if (grp %% 2 == 1) y else -y)
+  newdata <- rbind(newdata[1, ], newdata, newdata[nrow(newdata), ], newdata[1, ])
+  newdata[c(1, nrow(newdata) - 1, nrow(newdata)), "x"] <- round(newdata[1, "x"])
+
+  if (length(draw_quantiles) > 0 & !scales::zero_range(range(data$y))) {
+    stopifnot(all(draw_quantiles >= 0), all(draw_quantiles <=
+      1))
+    quantiles <- ggplot2:::create_quantile_segment_frame(data, draw_quantiles)
+    aesthetics <- data[rep(1, nrow(quantiles)), setdiff(names(data), c("x", "y")), drop = FALSE]
+    aesthetics$alpha <- rep(1, nrow(quantiles))
+    both <- cbind(quantiles, aesthetics)
+    quantile_grob <- GeomPath$draw_panel(both, ...)
+    ggplot2:::ggname("geom_split_violin", grid::grobTree(GeomPolygon$draw_panel(newdata, ...), quantile_grob))
+  }
+  else {
+    ggplot2:::ggname("geom_split_violin", GeomPolygon$draw_panel(newdata, ...))
+  }
+})
+
+geom_split_violin <- function(mapping = NULL, data = NULL, stat = "ydensity", position = "identity", ..., 
+                              draw_quantiles = NULL, trim = TRUE, scale = "area", na.rm = FALSE, 
+                              show.legend = NA, inherit.aes = TRUE) {
+  layer(data = data, mapping = mapping, stat = stat, geom = GeomSplitViolin, 
+        position = position, show.legend = show.legend, inherit.aes = inherit.aes, 
+        params = list(trim = trim, scale = scale, draw_quantiles = draw_quantiles, na.rm = na.rm, ...))
+}
+
+```
+
+
+### 3.1
+&emsp;&emsp;我们按照被试 (N=18) STAI 问卷得分高低把被试分成两组，前50%为高分组，后50%为低分组，对两组被试的得分进行单因素方差分析，结果差异显著(F(1,16)=19.48, p < 0.01, η²<sub>p</sub>=0.549, 90%置信区间: [0.224, 0.697])。
+
+
+```{r,echo=FALSE}
+
+# 按照被试焦虑量表得分分组
+
+plot_questionnairedata <- read.csv('C:/Users/DAWN/Desktop/matlab_finalhomework_analysis/questionnaire.csv');
+
+plot_questionnairedata <- data.frame(plot_questionnairedata[,30]);
+
+plot_orderdata <- plot_questionnairedata[order(-plot_questionnairedata),];
+plot_orderdata<-data.frame(plot_orderdata);
+len = dim(plot_orderdata)[1];
+plot_group <-data.frame(c(rep('高分组', times=(len/2)),rep('低分组',times=(len/2))));
+
+plot_orderdata<-data.frame(plot_orderdata,plot_group);
+names(plot_orderdata)<-c('分数','分组');
+
+
+plot_orderdata$分组<-as.factor(plot_orderdata$分组)
+
+
+### violin_q
+
+ggthemr('dust')
+
+qqq <-ggplot(plot_orderdata,aes(x=分组, y=分数,fill=分组)) +
+geom_violin(alpha=0.3,trim=FALSE,width=0.6) +
+  geom_boxplot(outlier.colour="red", outlier.shape=8, outlier.size=4,alpha=0.4,varwidth = TRUE,width=0.2)+
+  
+  geom_jitter(shape=16,alpha=2.0) +
+  labs(x="图1  两组被试的焦虑量表得分", y = "分数") 
+  
+qqq
+
+
+
+```
+
+### 3.2
+&emsp;&emsp;然后，我们对被试得到奖励后重复上一个选择的频率进行2(焦虑水平：高、低) × 2(情境类型：安全、威胁) 两因素方差分析，结果焦虑水平的主效应不显著，情景类型的主效应显著(F(1,16)=6.95, p=0.02, η²<sub>p</sub>=0.303, 90%置信区间: [0.032, 0.520])，焦虑水平和情景类型的交互作用显著(F(1,16)=7.89, p=0.01, η²<sub>p</sub>=0.330, 90%置信区间: [0.046, 0.541])。简单效应检验结果表明，安全情境下和威胁情境下高焦虑组和低焦虑组得到奖励后重复选择的频率都没有明显差异，高焦虑组在不同情境下得到奖励后重复选择的频率具有显著差异，(F(1,16)=14.82, p < 0.01, η²<sub>p</sub>=0.481, 90%置信区间: [0.155, 0.650])，低焦虑组在不同情境下得到奖励后重复选择的频率没有显著差异。
+
+
+```{r,echo=FALSE}
+## winstay code
+# winstay data
+winstaydata<-read.csv('C:/Users/DAWN/Desktop/matlab_finalhomework_analysis/wintable.csv');
+
+# 生成两列attribute variables
+group<-c(rep('高分组',18),rep('低分组',18))
+con<-c(rep('安全',9),rep('威胁',9),rep('安全',9),rep('威胁',9))
+
+
+plot_winstay <- c(winstaydata[,1])
+for(i in 2:4){
+ plot_winstay <- c(plot_winstay,winstaydata[,i])
+}
+plot_winstay<-data.frame(plot_winstay)
+
+plot_winstay<-cbind(plot_winstay,group,con)
+
+names(plot_winstay)<-c('plot_winstay','分组','情境');
+
+plot_winstay$分组<-as.factor(plot_winstay$分组)
+plot_winstay$情境<-as.factor(plot_winstay$情境)
+
+
+### violin_winstay
+
+ggthemr('flat')
+
+www<-ggplot(plot_winstay,aes(x=情境, y=plot_winstay,fill=分组)) +
+geom_split_violin(alpha=0.3,trim=FALSE,width=1.0) +
+  geom_boxplot(outlier.colour="red", outlier.shape=8, outlier.size=4,alpha=0.5,varwidth = TRUE,width=0.35)+
+ 
+  geom_jitter(shape=16, position = position_jitterdodge(),alpha=2.0) +
+  labs(x="图2  两组被试在不同情境下得到奖励后重复上一个选择的频率", y = "频率") 
+  
+
+www
+
+
+```
+
+### 3.3
+&emsp;&emsp;对被试受到惩罚之后避开上一选择的频率进行2(焦虑水平：高、低) × 2(情境类型：安全、威胁) 两因素方差分析，结果焦虑水平和情景类型的主效应都不显著，交互作用也不显著。
+
+
+```{r,echo=FALSE}
+## loseshift code
+
+# loseshift data
+loseshiftdata<-read.csv('C:/Users/DAWN/Desktop/matlab_finalhomework_analysis/losetable.csv');
+# 生成两列attribute variables
+group<-c(rep('高分组',18),rep('低分组',18))
+con<-c(rep('安全',9),rep('威胁',9),rep('安全',9),rep('威胁',9))
+
+
+plot_loseshift <- c(loseshiftdata[,1])
+for(i in 2:4){
+  plot_loseshift <- c(plot_loseshift,loseshiftdata[,i])
+}
+plot_loseshift<-data.frame(plot_loseshift)
+
+plot_loseshift<-cbind(plot_loseshift,group,con)
+
+names(plot_loseshift)<-c('plot_loseshift','分组','情境');
+
+plot_loseshift$分组<-as.factor(plot_loseshift$分组);
+plot_loseshift$情境<-as.factor(plot_loseshift$情境);
+
+### violin_loseshift
+
+ggthemr('light')
+
+lll<-ggplot(plot_loseshift,aes(x=情境, y=plot_loseshift,fill=分组)) +
+geom_split_violin(alpha=0.3,trim=FALSE,width=1.1) +
+  geom_boxplot(outlier.colour="red", outlier.shape=8, outlier.size=4,alpha=0.5,varwidth = TRUE,width=0.4)+
+ 
+  geom_jitter(shape=16, position = position_jitterdodge()) +
+   labs(x="图3  两组被试在不同情境下受到惩罚之后避开上一选择的频率", y = "频率") 
+lll
+
+```
+
+### 3.4
+&emsp;&emsp;对被试的反应时进行2(焦虑水平：高、低) × 2(情境类型：安全、威胁) 两因素方差分析，结果情景类型和焦虑水平的主效应都不显著，交互作用显著(F(1, 16)=5.46, p=0.03, η²<sub>p</sub>=0.254, 90%置信区间: [0.012, 0.481])。简单效应检验结果表明，安全情境下和威胁情境下高焦虑组和低焦虑组的反应时都没有明显差异，高焦虑组在不同情境下的反应时没有显著差异，低焦虑组在不同情境下的反应时有显著差异(F(1,16)=6.1, p=0.03, η²<sub>p</sub>=0.276, 90%置信区间: [0.021, 0.498])。
+
+```{r,echo=FALSE}
+## RT code
+# RT data
+RTdata<-read.csv('C:/Users/DAWN/Desktop/matlab_finalhomework_analysis/RTtable.csv');
+
+
+# 生成两列attribute variables
+group<-c(rep('高分组',18),rep('低分组',18))
+con<-c(rep('安全',9),rep('威胁',9),rep('安全',9),rep('威胁',9))
+
+
+plot_RT <- c(RTdata[,1])
+for(i in 2:4){
+  plot_RT <- c(plot_RT,RTdata[,i])
+}
+plot_RT<-data.frame(plot_RT)
+
+plot_RT<-cbind(plot_RT,group,con)
+
+names(plot_RT)<-c('plot_RT','分组','情境');
+
+plot_RT$分组<-as.factor(plot_RT$分组)
+plot_RT$情境<-as.factor(plot_RT$情境)
+
+
+### violin_rt
+
+
+ggthemr('pale')
+
+rrr<-ggplot(plot_RT,aes(x=情境, y=plot_RT,fill=分组)) +
+geom_split_violin(alpha=0.3,trim=FALSE,width=1.0) +
+  geom_boxplot(outlier.colour="red", outlier.shape=8, outlier.size=4,alpha=0.5,varwidth = TRUE,width=0.4)+
+ 
+  geom_jitter(shape=16, position = position_jitterdodge()) +
+  labs(x="图4  两组被试在不同情境下的反应时(ms)", y = "反应时(ms)") 
+
+rrr
+
+
+```
+
+### 3.5
+&emsp;&emsp;被试完成实验后被要求回忆安全情景与威胁情景下的焦虑程度并填写十点评分量表，对评分进行2(焦虑水平：高、低) × 2(情境类型：安全、威胁) 两因素方差分析，结果焦虑水平的主效应不显著，情景类型的主效应显著(F(1,16)=110.78, p  < 0.01, η²<sub>p</sub>=0.874, 90%置信区间: [0.731, 0.915])，交互作用显著(F(1,16)= 7.40, p=0.02, η²<sub>p</sub>= 0.316, 90%置信区间: [0.039, 0.530])，简单效应检验结果表明，安全情境下和威胁情境下高焦虑组和低焦虑组的焦虑水平没有显著差异，高焦虑组在不同情境下的焦虑水平有显著差异(F(1,16)=30.46, p < 0.01, η²<sub>p</sub>=0.656, 90%置信区间: [0.358, 0.769])，低焦虑组在不同情境下的焦虑水平有显著差异(F(1,16)=87.72, p < 0.01, η²<sub>p</sub>=0.846,  90%置信区间: [0.676, 0.896])。
+
+
+```{r,echo=FALSE}
+## ev code
+# ev data
+evhigh<-read.csv("C:/Users/DAWN/Desktop/matlab_finalhomework_analysis/evhigh.csv");
+evlow<-read.csv("C:/Users/DAWN/Desktop/matlab_finalhomework_analysis/evlow.csv");
+
+# 生成两列attribute variables
+group<-c(rep('高分组',18),rep('低分组',18))
+con<-c(rep('安全',9),rep('威胁',9),rep('安全',9),rep('威胁',9))
+
+
+
+plot_evhigh<-evhigh[,c(2,3)];
+
+plot_evlow<-evlow[,c(2,3)];
+plot_evdata<-cbind(plot_evhigh,plot_evlow);
+
+plot_ev <- c(plot_evdata[,1])
+for(i in 2:4){
+  plot_ev <- c(plot_ev,plot_evdata[,i])
+}
+plot_ev<-data.frame(plot_ev)
+
+plot_ev<-cbind(plot_ev,group,con)
+
+names(plot_ev)<-c('plot_ev','分组','情境');
+plot_ev$分组<-as.factor(plot_ev$分组)
+plot_ev$情境<-as.factor(plot_ev$情境)
+
+
+### violin_ev
+
+
+ggthemr('solarized')
+
+eee<-ggplot(plot_ev,aes(x=情境, y=plot_ev,fill=分组)) +
+geom_split_violin(alpha=0.3,trim=FALSE,width=1.2) +
+  geom_boxplot(outlier.colour="red", outlier.shape=8, outlier.size=4,alpha=0.5,varwidth = TRUE,width=0.35)+
+ 
+  geom_jitter(shape=16, position = position_jitterdodge(),alpha=0.6) +
+  labs(x="图5  两组被试在不同情境下的焦虑程度", y = "十点焦虑量表得分") 
+
+eee
+
+```
+
+
