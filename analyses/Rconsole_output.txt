@@ -1,0 +1,551 @@
+========================================================
+BRoadly Useful Collections and Extensions of R functions
+========================================================
+Loaded packages:
+<U+2714> bruceR (version 0.4.6)
+<U+2714> rio, dplyr, stringr, lubridate
+<U+2714> data.table, performance, ggplot2, cowplot
+Update:
+bruceR::check_update()
+devtools::install_github("psychbruce/bruceR")
+Citation:
+Bao, H.-W.-S. (2020). bruceR: Broadly useful collections and extensions of R functions. R package version 0.4.6. Retrieved from https://github.com/psychbruce/bruceR
+====== MANOVA Output (Between-Subjects Design) ======
+
+Descriptive Statistics:
+───────────────────
+ group  Mean S.D. N
+───────────────────
+     1 47.44 6.31 9
+     2 36.33 4.15 9
+───────────────────
+Total sample size: N = 18
+
+ANOVA Table:
+Dependent variable(s):      总分
+Between-subjects factor(s): group
+Within-subjects factor(s):  -
+Covariate(s):               -
+──────────────────────────────────────────────────────────────────
+            MS    MSE df1 df2     F     p      η2p   [90%     CI]
+──────────────────────────────────────────────────────────────────
+group  555.556 28.514   1  16 19.48 <.001 *** 0.549 [0.224, 0.697]
+──────────────────────────────────────────────────────────────────
+MSE = Mean Square Error (an estimate of the population variance σ2)
+
+ANOVA Effect Size:
+           ω2      η2   η2[G]   η2[p] Cohen's f
+group   0.507   0.549   0.549   0.549     1.103
+
+ω2 = omega-squared = (SS - df1 * MSE) / (SST + MSE)
+η2 = eta-squared = SS / SST
+η2G = generalized eta-squared (see Olejnik & Algina, 2003)
+η2p = partial eta-squared = SS / (SS + SSE) = F * df1 / (F * df1 + df2)
+Cohen’s f = sqrt( η2p / (1 - η2p) )
+
+Levene’s Test for Homogeneity of Variance:
+DV = 总分:
+                Levene's F df1 df2     p sig
+Based on Mean         0.72   1  16  .410    
+Based on Median       0.38   1  16  .547    
+
+====== MANOVA Output (Mixed Design) ======
+
+Descriptive Statistics:
+──────────────────────
+ group con Mean S.D. N
+──────────────────────
+     1   s 0.60 0.11 9
+     1   t 0.68 0.09 9
+     2   s 0.63 0.12 9
+     2   t 0.63 0.12 9
+──────────────────────
+Total sample size: N = 18
+
+ANOVA Table:
+Dependent variable(s):      consafe, conthreat
+Between-subjects factor(s): group
+Within-subjects factor(s):  con
+Covariate(s):               -
+──────────────────────────────────────────────────────────────────
+              MS   MSE df1 df2    F     p      η2p   [90%     CI]
+──────────────────────────────────────────────────────────────────
+group      0.001 0.021   1  16 0.03  .860     0.002 [0.000, 0.104]
+con        0.015 0.002   1  16 6.95  .018 *   0.303 [0.032, 0.520]
+group:con  0.017 0.002   1  16 7.89  .013 *   0.330 [0.046, 0.541]
+──────────────────────────────────────────────────────────────────
+MSE = Mean Square Error (an estimate of the population variance σ2)
+
+ANOVA Effect Size:
+               ω2      η2   η2[G]   η2[p] Cohen's f
+group      -0.004   0.002   0.002   0.002     0.045
+con         0.031   0.037   0.039   0.303     0.659
+group:con   0.036   0.042   0.044   0.330     0.702
+
+ω2 = omega-squared = (SS - df1 * MSE) / (SST + MSE)
+η2 = eta-squared = SS / SST
+η2G = generalized eta-squared (see Olejnik & Algina, 2003)
+η2p = partial eta-squared = SS / (SS + SSE) = F * df1 / (F * df1 + df2)
+Cohen’s f = sqrt( η2p / (1 - η2p) )
+
+Levene’s Test for Homogeneity of Variance:
+DV = consafe:
+                Levene's F df1 df2     p sig
+Based on Mean         0.08   1  16  .781    
+Based on Median       0.01   1  16  .938    
+
+DV = conthreat:
+                Levene's F df1 df2     p sig
+Based on Mean         1.23   1  16  .285    
+Based on Median       0.24   1  16  .632    
+
+Mauchly’s Test of Sphericity:
+
+------ EMMEANS Output (effect = "group") ------
+
+Simple Effects of "group":
+con = s:
+ ----  df1 df2    F         p sig   η2p  [90%     CI] 
+ group   1  16 0.44 0.5157859     0.027 [0.000, 0.226]
+
+con = t:
+ ----  df1 df2    F         p sig   η2p  [90%     CI] 
+ group   1  16 1.11 0.3070653     0.065 [0.000, 0.290]
+
+Estimated Marginal Means of "group":
+con = s:
+ group EM.Mean    S.E. df  [95%    CI]
+ 1        0.60 (0.037) 16 [0.52, 0.68]
+ 2        0.63 (0.037) 16 [0.56, 0.71]
+
+con = t:
+ group EM.Mean    S.E. df  [95%    CI]
+ 1        0.68 (0.035) 16 [0.61, 0.76]
+ 2        0.63 (0.035) 16 [0.56, 0.70]
+
+EM.Mean uses an equally weighted average. 
+
+Pairwise Comparisons of "group":
+con = s:
+ Contrast     b    S.E. df     t     p sig  Cohen's d  [95%     CI]
+ 2 - 1     0.03 (0.052) 16  0.66  .516      0.2389574 [-0.52, 1.00]
+
+con = t:
+ Contrast     b    S.E. df     t     p sig  Cohen's d  [95%     CI]
+ 2 - 1    -0.05 (0.049) 16 -1.06  .307     -0.3586782 [-1.08, 0.36]
+
+SD_pooled for computing Cohen’s d: 0.15 
+No need to adjust p values. 
+
+------ EMMEANS Output (effect = "con") ------
+
+Simple Effects of "con":
+group = 1:
+ ---- df1 df2     F         p sig   η2p  [90%     CI] 
+ con    1  16 14.82 0.0014142 **  0.481 [0.155, 0.650]
+
+group = 2:
+ ---- df1 df2     F         p sig   η2p  [90%     CI] 
+ con    1  16  0.01 0.9043834     0.001 [0.000, 0.068]
+
+Estimated Marginal Means of "con":
+group = 1:
+ con EM.Mean    S.E.    df  [95%    CI]
+ s      0.60 (0.036) 19.23 [0.52, 0.67]
+ t      0.68 (0.036) 19.23 [0.61, 0.76]
+
+group = 2:
+ con EM.Mean    S.E.    df  [95%    CI]
+ s      0.63 (0.036) 19.23 [0.56, 0.71]
+ t      0.63 (0.036) 19.23 [0.56, 0.71]
+
+Warning: EMMs are biased unless design is perfectly balanced 
+EM.Mean uses an equally weighted average. 
+
+Pairwise Comparisons of "con":
+group = 1:
+ Contrast    b    S.E. df     t     p sig  Cohen's d  [95%     CI]
+ t - s    0.08 (0.022) 16  3.85  .001 **   1.8150873 [ 0.82, 2.81]
+
+group = 2:
+ Contrast    b    S.E. df     t     p sig  Cohen's d  [95%     CI]
+ t - s    0.00 (0.022) 16 -0.12  .904     -0.0575324 [-1.06, 0.94]
+
+SD_pooled for computing Cohen’s d: 0.05 
+No need to adjust p values. 
+
+====== MANOVA Output (Mixed Design) ======
+
+Descriptive Statistics:
+──────────────────────
+ group con Mean S.D. N
+──────────────────────
+     1   s 0.67 0.18 9
+     1   t 0.68 0.15 9
+     2   s 0.66 0.19 9
+     2   t 0.70 0.18 9
+──────────────────────
+Total sample size: N = 18
+
+ANOVA Table:
+Dependent variable(s):      consafe, conthreat
+Between-subjects factor(s): group
+Within-subjects factor(s):  con
+Covariate(s):               -
+──────────────────────────────────────────────────────────────────
+              MS   MSE df1 df2    F     p      η2p   [90%     CI]
+──────────────────────────────────────────────────────────────────
+group      0.000 0.052   1  16 0.00  .957     0.000 [0.000, 1.000]
+con        0.005 0.011   1  16 0.51  .485     0.031 [0.000, 0.235]
+group:con  0.004 0.011   1  16 0.35  .563     0.021 [0.000, 0.213]
+──────────────────────────────────────────────────────────────────
+MSE = Mean Square Error (an estimate of the population variance σ2)
+
+ANOVA Effect Size:
+               ω2      η2   η2[G]   η2[p] Cohen's f
+group      -0.010   0.000   0.000   0.000     0.000
+con        -0.005   0.005   0.005   0.031     0.179
+group:con  -0.007   0.004   0.004   0.021     0.146
+
+ω2 = omega-squared = (SS - df1 * MSE) / (SST + MSE)
+η2 = eta-squared = SS / SST
+η2G = generalized eta-squared (see Olejnik & Algina, 2003)
+η2p = partial eta-squared = SS / (SS + SSE) = F * df1 / (F * df1 + df2)
+Cohen’s f = sqrt( η2p / (1 - η2p) )
+
+Levene’s Test for Homogeneity of Variance:
+DV = consafe:
+                Levene's F df1 df2     p sig
+Based on Mean         0.02   1  16  .899    
+Based on Median       0.01   1  16  .908    
+
+DV = conthreat:
+                Levene's F df1 df2     p sig
+Based on Mean         0.03   1  16  .857    
+Based on Median       0.05   1  16  .833    
+
+Mauchly’s Test of Sphericity:
+
+------ EMMEANS Output (effect = "group") ------
+
+Simple Effects of "group":
+con = s:
+ ----  df1 df2    F         p sig   η2p  [90%     CI] 
+ group   1  16 0.03 0.8551363     0.002 [0.000, 0.106]
+
+con = t:
+ ----  df1 df2    F         p sig   η2p  [90%     CI] 
+ group   1  16 0.10 0.7595775     0.006 [0.000, 0.153]
+
+Estimated Marginal Means of "group":
+con = s:
+ group EM.Mean    S.E. df  [95%    CI]
+ 1        0.67 (0.062) 16 [0.54, 0.81]
+ 2        0.66 (0.062) 16 [0.53, 0.79]
+
+con = t:
+ group EM.Mean    S.E. df  [95%    CI]
+ 1        0.68 (0.056) 16 [0.56, 0.80]
+ 2        0.70 (0.056) 16 [0.58, 0.82]
+
+EM.Mean uses an equally weighted average. 
+
+Pairwise Comparisons of "group":
+con = s:
+ Contrast     b    S.E. df     t     p sig   Cohen's d  [95%     CI]
+ 2 - 1    -0.02 (0.088) 16 -0.19  .855     -0.07149392 [-0.89, 0.75]
+
+con = t:
+ Contrast     b    S.E. df     t     p sig   Cohen's d  [95%     CI]
+ 2 - 1     0.02 (0.079) 16  0.31  .760      0.10781112 [-0.63, 0.84]
+
+SD_pooled for computing Cohen’s d: 0.23 
+No need to adjust p values. 
+
+------ EMMEANS Output (effect = "con") ------
+
+Simple Effects of "con":
+group = 1:
+ ---- df1 df2    F         p sig   η2p  [90%     CI] 
+ con    1  16 0.01 0.9304881     0.000 [0.000, 0.036]
+
+group = 2:
+ ---- df1 df2    F         p sig   η2p  [90%     CI] 
+ con    1  16 0.85 0.3697218     0.051 [0.000, 0.269]
+
+Estimated Marginal Means of "con":
+group = 1:
+ con EM.Mean    S.E.    df  [95%    CI]
+ s      0.67 (0.059) 22.37 [0.55, 0.80]
+ t      0.68 (0.059) 22.37 [0.56, 0.80]
+
+group = 2:
+ con EM.Mean    S.E.    df  [95%    CI]
+ s      0.66 (0.059) 22.37 [0.54, 0.78]
+ t      0.70 (0.059) 22.37 [0.58, 0.82]
+
+Warning: EMMs are biased unless design is perfectly balanced 
+EM.Mean uses an equally weighted average. 
+
+Pairwise Comparisons of "con":
+group = 1:
+ Contrast    b    S.E. df     t     p sig Cohen's d  [95%     CI]
+ t - s    0.00 (0.049) 16  0.09  .930     0.0417732 [-0.96, 1.04]
+
+group = 2:
+ Contrast    b    S.E. df     t     p sig Cohen's d  [95%     CI]
+ t - s    0.05 (0.049) 16  0.92  .370     0.4351024 [-0.56, 1.43]
+
+SD_pooled for computing Cohen’s d: 0.10 
+No need to adjust p values. 
+
+====== MANOVA Output (Mixed Design) ======
+
+Descriptive Statistics:
+──────────────────────────
+ group con   Mean   S.D. N
+──────────────────────────
+     1   s 556.77 197.40 9
+     1   t 531.23 177.52 9
+     2   s 405.83 192.38 9
+     2   t 481.52 265.60 9
+──────────────────────────
+Total sample size: N = 18
+
+ANOVA Table:
+Dependent variable(s):      consafe, conthreat
+Between-subjects factor(s): group
+Within-subjects factor(s):  con
+Covariate(s):               -
+──────────────────────────────────────────────────────────────────────────
+                  MS       MSE df1 df2    F     p      η2p   [90%     CI]
+──────────────────────────────────────────────────────────────────────────
+group      90584.697 84792.615   1  16 1.07  .317     0.063 [0.000, 0.286]
+con         5655.353  4224.257   1  16 1.34  .264     0.077 [0.000, 0.306]
+group:con  23056.524  4224.257   1  16 5.46  .033 *   0.254 [0.012, 0.481]
+──────────────────────────────────────────────────────────────────────────
+MSE = Mean Square Error (an estimate of the population variance σ2)
+
+ANOVA Effect Size:
+               ω2      η2   η2[G]   η2[p] Cohen's f
+group       0.056   0.059   0.060   0.063     0.259
+con         0.001   0.004   0.004   0.077     0.289
+group:con   0.012   0.015   0.016   0.254     0.584
+
+ω2 = omega-squared = (SS - df1 * MSE) / (SST + MSE)
+η2 = eta-squared = SS / SST
+η2G = generalized eta-squared (see Olejnik & Algina, 2003)
+η2p = partial eta-squared = SS / (SS + SSE) = F * df1 / (F * df1 + df2)
+Cohen’s f = sqrt( η2p / (1 - η2p) )
+
+Levene’s Test for Homogeneity of Variance:
+DV = consafe:
+                Levene's F df1 df2     p sig
+Based on Mean         0.05   1  16  .831    
+Based on Median       0.02   1  16  .903    
+
+DV = conthreat:
+                Levene's F df1 df2     p sig
+Based on Mean         2.40   1  16  .141    
+Based on Median       0.97   1  16  .338    
+
+Mauchly’s Test of Sphericity:
+
+------ EMMEANS Output (effect = "group") ------
+
+Simple Effects of "group":
+con = s:
+ ----  df1 df2    F         p sig   η2p  [90%     CI] 
+ group   1  16 2.70 0.1199321     0.144 [0.000, 0.381]
+
+con = t:
+ ----  df1 df2    F         p sig   η2p  [90%     CI] 
+ group   1  16 0.22 0.6469275     0.013 [0.000, 0.190]
+
+Estimated Marginal Means of "group":
+con = s:
+ group EM.Mean    S.E.  df  [95%      CI]  
+ 1      556.77 (64.969) 16 [419.04, 694.50]
+ 2      405.83 (64.969) 16 [268.11, 543.56]
+
+con = t:
+ group EM.Mean    S.E.  df  [95%      CI]  
+ 1      531.23 (75.298) 16 [371.60, 690.85]
+ 2      481.52 (75.298) 16 [321.89, 641.14]
+
+EM.Mean uses an equally weighted average. 
+
+Pairwise Comparisons of "group":
+con = s:
+ Contrast       b    S.E.   df     t     p sig  Cohen's d  [95%     CI]
+ 2 - 1    -150.94 ( 91.880) 16 -1.64  .120     -0.5183488 [-1.19, 0.15]
+
+con = t:
+ Contrast       b    S.E.   df     t     p sig  Cohen's d  [95%     CI]
+ 2 - 1     -49.71 (106.488) 16 -0.47  .647     -0.1707113 [-0.95, 0.60]
+
+SD_pooled for computing Cohen’s d: 291.19 
+No need to adjust p values. 
+
+------ EMMEANS Output (effect = "con") ------
+
+Simple Effects of "con":
+group = 1:
+ ---- df1 df2   F         p sig   η2p  [90%     CI] 
+ con    1  16 0.7 0.4166550     0.042 [0.000, 0.254]
+
+group = 2:
+ ---- df1 df2   F         p sig   η2p  [90%     CI] 
+ con    1  16 6.1 0.0251372 *   0.276 [0.021, 0.498]
+
+Estimated Marginal Means of "con":
+group = 1:
+ con EM.Mean    S.E.     df  [95%      CI]  
+ s    556.77 (70.323) 17.59 [408.78, 704.76]
+ t    531.22 (70.323) 17.59 [383.23, 679.22]
+
+group = 2:
+ con EM.Mean    S.E.     df  [95%      CI]  
+ s    405.83 (70.323) 17.59 [257.84, 553.82]
+ t    481.52 (70.323) 17.59 [333.52, 629.51]
+
+Warning: EMMs are biased unless design is perfectly balanced 
+EM.Mean uses an equally weighted average. 
+
+Pairwise Comparisons of "con":
+group = 1:
+ Contrast      b    S.E.  df     t     p sig  Cohen's d  [95%     CI]
+ t - s    -25.55 (30.639) 16 -0.83  .417     -0.3930688 [-1.39, 0.61]
+
+group = 2:
+ Contrast      b    S.E.  df     t     p sig  Cohen's d  [95%     CI]
+ t - s     75.68 (30.639) 16  2.47  .025 *    1.1644400 [ 0.17, 2.16]
+
+SD_pooled for computing Cohen’s d: 64.99 
+No need to adjust p values. 
+
+====== MANOVA Output (Mixed Design) ======
+
+Descriptive Statistics:
+──────────────────────
+ group con Mean S.D. N
+──────────────────────
+     1   s 3.33 2.18 9
+     1   t 7.00 1.87 9
+     2   s 1.89 1.05 9
+     2   t 8.11 0.78 9
+──────────────────────
+Total sample size: N = 18
+
+ANOVA Table:
+Dependent variable(s):      consafe, conthreat
+Between-subjects factor(s): group
+Within-subjects factor(s):  con
+Covariate(s):               -
+──────────────────────────────────────────────────────────────────────
+                MS   MSE df1 df2      F     p      η2p   [90%     CI]
+──────────────────────────────────────────────────────────────────────
+group        0.250 3.000   1  16   0.08  .777     0.005 [0.000, 0.146]
+con        220.028 1.986   1  16 110.78 <.001 *** 0.874 [0.731, 0.915]
+group:con   14.694 1.986   1  16   7.40  .015 *   0.316 [0.039, 0.530]
+──────────────────────────────────────────────────────────────────────
+MSE = Mean Square Error (an estimate of the population variance σ2)
+
+ANOVA Effect Size:
+               ω2      η2   η2[G]   η2[p] Cohen's f
+group      -0.005   0.001   0.003   0.005     0.071
+con         0.688   0.699   0.734   0.874     2.634
+group:con   0.040   0.047   0.156   0.316     0.680
+
+ω2 = omega-squared = (SS - df1 * MSE) / (SST + MSE)
+η2 = eta-squared = SS / SST
+η2G = generalized eta-squared (see Olejnik & Algina, 2003)
+η2p = partial eta-squared = SS / (SS + SSE) = F * df1 / (F * df1 + df2)
+Cohen’s f = sqrt( η2p / (1 - η2p) )
+
+Levene’s Test for Homogeneity of Variance:
+DV = consafe:
+                Levene's F df1 df2     p sig
+Based on Mean         3.85   1  16  .067 .  
+Based on Median       3.24   1  16  .091 .  
+
+DV = conthreat:
+                Levene's F df1 df2     p sig
+Based on Mean         8.40   1  16  .010 *  
+Based on Median       8.53   1  16  .010 *  
+
+Mauchly’s Test of Sphericity:
+
+------ EMMEANS Output (effect = "group") ------
+
+Simple Effects of "group":
+con = s:
+ ----  df1 df2   F          p sig   η2p  [90%     CI] 
+ group   1  16 3.2 0.09240912 .   0.167 [0.000, 0.403]
+
+con = t:
+ ----  df1 df2   F          p sig   η2p  [90%     CI] 
+ group   1  16 2.7 0.11968046     0.145 [0.000, 0.381]
+
+Estimated Marginal Means of "group":
+con = s:
+ group EM.Mean    S.E. df  [95%    CI]
+ 1        3.33 (0.571) 16 [2.12, 4.54]
+ 2        1.89 (0.571) 16 [0.68, 3.10]
+
+con = t:
+ group EM.Mean    S.E. df  [95%    CI]
+ 1        7.00 (0.478) 16 [5.99, 8.01]
+ 2        8.11 (0.478) 16 [7.10, 9.12]
+
+EM.Mean uses an equally weighted average. 
+
+Pairwise Comparisons of "group":
+con = s:
+ Contrast     b    S.E. df     t     p sig  Cohen's d  [95%     CI]
+ 2 - 1    -1.44 (0.807) 16 -1.79  .092 .   -0.8339504 [-1.82, 0.15]
+
+con = t:
+ Contrast     b    S.E. df     t     p sig  Cohen's d  [95%     CI]
+ 2 - 1     1.11 (0.676) 16  1.64  .120      0.6415003 [-0.19, 1.47]
+
+SD_pooled for computing Cohen’s d: 1.73 
+No need to adjust p values. 
+
+------ EMMEANS Output (effect = "con") ------
+
+Simple Effects of "con":
+group = 1:
+ ---- df1 df2     F            p sig   η2p  [90%     CI] 
+ con    1  16 30.46 4.667021e-05 *** 0.656 [0.358, 0.769]
+
+group = 2:
+ ---- df1 df2     F            p sig   η2p  [90%     CI] 
+ con    1  16 87.72 6.780000e-08 *** 0.846 [0.676, 0.896]
+
+Estimated Marginal Means of "con":
+group = 1:
+ con EM.Mean    S.E.    df  [95%    CI]
+ s      3.33 (0.526) 30.73 [2.26, 4.41]
+ t      7.00 (0.526) 30.73 [5.93, 8.07]
+
+group = 2:
+ con EM.Mean    S.E.    df  [95%    CI]
+ s      1.89 (0.526) 30.73 [0.82, 2.96]
+ t      8.11 (0.526) 30.73 [7.04, 9.18]
+
+Warning: EMMs are biased unless design is perfectly balanced 
+EM.Mean uses an equally weighted average. 
+
+Pairwise Comparisons of "con":
+group = 1:
+ Contrast    b    S.E. df     t     p sig Cohen's d  [95%    CI]
+ t - s    3.67 (0.664) 16  5.52 <.001 ***  2.601775 [1.60, 3.60]
+
+group = 2:
+ Contrast    b    S.E. df     t     p sig Cohen's d  [95%    CI]
+ t - s    6.22 (0.664) 16  9.37 <.001 ***  4.415133 [3.42, 5.41]
+
+SD_pooled for computing Cohen’s d: 1.41 
+No need to adjust p values. 
+
